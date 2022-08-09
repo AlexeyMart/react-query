@@ -1,14 +1,19 @@
-import React from "react";
-import logo from "./logo.svg";
+import { Route, Routes } from "react-router-dom";
+import { HomePage } from "./components/pages/HomePage";
+import { SuperHeroes } from "./components/pages/SuperHeroes";
+import { AppRoutes } from "./constants";
+import { Layout } from "./components/layout/Layout";
 import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
-    </div>
+    <Routes>
+      <Route path={AppRoutes.Main} element={<Layout />}>
+        <Route index element={<HomePage />} />
+
+        <Route path={AppRoutes.SuperHeroes} element={<SuperHeroes />} />
+      </Route>
+    </Routes>
   );
 }
 
