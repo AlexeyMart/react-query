@@ -5,6 +5,7 @@ import { QueryKeys } from "../../../constants";
 import { fetchSuperHeroes } from "../../requests/fetchSuperHeroes";
 import { SuperHero } from "../../../types";
 import { Loader } from "../../loader/Loader";
+import { Card } from "antd";
 import "./SuperHeroes.css";
 
 export const SuperHeroes: FC = () => {
@@ -15,9 +16,9 @@ export const SuperHeroes: FC = () => {
 
   const renderHero = ({ id, name, alterEgo }: SuperHero) => {
     return (
-      <div key={id}>
-        Name: {name}, AlterEgo: {alterEgo}
-      </div>
+      <Card key={id} title={name}>
+        <p>{alterEgo}</p>
+      </Card>
     );
   };
 

@@ -4,6 +4,7 @@ import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import App from "./App";
 import { staleTime } from "./constants";
+import "antd/dist/antd.css";
 import "./index.css";
 
 // options также можно применять в каждом отдельном useQuery
