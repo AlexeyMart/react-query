@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import { HomePage } from "./components/pages/HomePage";
-import { SuperHeroes } from "./components/pages/SuperHeroes";
+import { HomePage } from "./components/pages/HomePage/HomePage";
+import { SuperHeroes } from "./components/pages/SuperHeroes/SuperHeroes";
 import { AppRoutes } from "./constants";
 import { Layout } from "./components/layout/Layout";
 import "./App.css";
