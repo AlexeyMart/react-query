@@ -5,6 +5,7 @@ import { SuperHero } from "./components/pages/SuperHero/SuperHero";
 import { AppRoutes } from "./constants";
 import { Layout } from "./components/layout/Layout";
 import "./App.css";
+import { NotFound } from "./components/pages/NotFound/NotFound";
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
 
         <Route path={AppRoutes.SuperHero} element={<SuperHero />} />
       </Route>
+
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
