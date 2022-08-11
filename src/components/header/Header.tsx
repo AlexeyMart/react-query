@@ -7,7 +7,7 @@ export const Header: FC = () => {
   return (
     <header className="header">
       <NavLink className="header_link" to={AppRoutes.Main}>
-        Main Page
+        Home Page
       </NavLink>
 
       <NavLink className="header_link" to={AppRoutes.SuperHeroes}>

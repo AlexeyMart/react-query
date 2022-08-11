@@ -1,8 +1,9 @@
 import { FC } from "react";
 import { AxiosError } from "axios";
+import { Link } from "react-router-dom";
 import { SuperHero } from "../../../types";
 import { Loader } from "../../loader/Loader";
-import { Card, Button } from "antd";
+import { Button, Typography } from "antd";
 import { useSuperHeroesData } from "../../../queries/useSuperHeroesData";
 import "./SuperHeroes.css";
 import {
@@ -11,18 +12,6 @@ import {
 } from "../../../utils/notifications";
 
 export const SuperHeroes: FC = () => {
-  const onSuccess = (data: SuperHero[]) => {
-    console.log("data :>> ", data);
-
-    successNotification("Данные получены");
-  };
-
-  const onError = (error: AxiosError) => {
-    console.log("error :>> ", error);
-
-    errorNotification("Произошла ошибка");
-  };
-
   const { isLoading, isFetching, isError, data, error, refetch } =
     useSuperHeroesData({ onSuccess, onError });
 
@@ -30,23 +19,27 @@ export const SuperHeroes: FC = () => {
     refetch();
   };
 
-  const renderHero = ({ id, name, alterEgo }: SuperHero) => {
+  const renderHero = ({ id, name }: SuperHero) => {
     return (
-      <Card key={id} title={name}>
-        <p>{alterEgo}</p>
-      </Card>
+      <Link to={`${id}`} key={id}>
+        <Typography.Title level={4}>{name}</Typography.Title>
+      </Link>
     );
   };
 
   if (isError) {
-    return <h3>Error: {(error as AxiosError).message}</h3>;
+    return (
+      <Typography.Title level={2}>
+        Error: {(error as AxiosError).message}
+      </Typography.Title>
+    );
   }
 
   return (
     <div className="super-heroes">
-      <h2 className="super-heroes_title">SuperHeroes Page</h2>
+      <Typography.Title>SuperHeroes Page</Typography.Title>
 
-      <Button onClick={handleRefetch} style={{ marginBottom: "10px" }}>
+      <Button onClick={handleRefetch} style={{ marginBottom: "30px" }}>
         Fetch / Refetch
       </Button>
 
@@ -56,3 +49,15 @@ export const SuperHeroes: FC = () => {
     </div>
   );
 };
+
+function onSuccess(data: SuperHero[]) {
+  console.log("data :>> ", data);
+
+  successNotification("Данные получены");
+}
+
+function onError(error: AxiosError) {
+  console.log("error :>> ", error);
+
+  errorNotification("Произошла ошибка");
+}

@@ -1,6 +1,7 @@
 export enum AppRoutes {
   Main = "/",
-  SuperHeroes = "/super-heroes",
+  SuperHeroes = "super-heroes",
+  SuperHero = "super-heroes/:heroId",
 }
 
 export enum QueryRoutes {
@@ -9,4 +10,5 @@ export enum QueryRoutes {
 
 export enum QueryKeys {
   SuperHeroes = "super-heroes",
+  SuperHero = "super-hero",
 }

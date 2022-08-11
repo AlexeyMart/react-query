@@ -1,5 +1,6 @@
 import { FC } from "react";
+import { Typography } from "antd";
 
 export const HomePage: FC = () => {
-  return <h2>Home Page</h2>;
+  return <Typography.Title>Home Page</Typography.Title>;
 };
