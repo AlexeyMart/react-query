@@ -10,6 +10,3 @@ export enum QueryRoutes {
 export enum QueryKeys {
   SuperHeroes = "super-heroes",
 }
-
-// 5 minutes in ms
-export const staleTime = 5 * 60 * 1000;

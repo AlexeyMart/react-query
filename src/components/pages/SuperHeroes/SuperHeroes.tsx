@@ -1,18 +1,34 @@
 import { FC } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
-import { QueryKeys } from "../../../constants";
-import { fetchSuperHeroes } from "../../requests/fetchSuperHeroes";
 import { SuperHero } from "../../../types";
 import { Loader } from "../../loader/Loader";
-import { Card } from "antd";
+import { Card, Button } from "antd";
+import { useSuperHeroesData } from "../../../queries/useSuperHeroesData";
 import "./SuperHeroes.css";
+import {
+  errorNotification,
+  successNotification,
+} from "../../../utils/notifications";
 
 export const SuperHeroes: FC = () => {
-  const { isLoading, isFetching, isError, data, error } = useQuery(
-    [QueryKeys.SuperHeroes],
-    fetchSuperHeroes
-  );
+  const onSuccess = (data: SuperHero[]) => {
+    console.log("data :>> ", data);
+
+    successNotification("Данные получены");
+  };
+
+  const onError = (error: AxiosError) => {
+    console.log("error :>> ", error);
+
+    errorNotification("Произошла ошибка");
+  };
+
+  const { isLoading, isFetching, isError, data, error, refetch } =
+    useSuperHeroesData({ onSuccess, onError });
+
+  const handleRefetch = () => {
+    refetch();
+  };
 
   const renderHero = ({ id, name, alterEgo }: SuperHero) => {
     return (
@@ -29,6 +45,10 @@ export const SuperHeroes: FC = () => {
   return (
     <div className="super-heroes">
       <h2 className="super-heroes_title">SuperHeroes Page</h2>
+
+      <Button onClick={handleRefetch} style={{ marginBottom: "10px" }}>
+        Fetch / Refetch
+      </Button>
 
       {(isLoading || isFetching) && <Loader />}
 
