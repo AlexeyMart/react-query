@@ -3,7 +3,7 @@ import axios, { AxiosResponse } from "axios";
 import { QueryKeys, QueryRoutes } from "../constants";
 import { SuperHero } from "../types";
 
-const fetchSuperHero = async (heroId: string) => {
+export const fetchSuperHero = async (heroId: string) => {
   try {
     const response: AxiosResponse<SuperHero> = await axios.get(
       `${QueryRoutes.SuperHeroes}/${heroId}`

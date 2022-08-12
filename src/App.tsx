@@ -6,6 +6,7 @@ import { AppRoutes } from "./constants";
 import { Layout } from "./components/layout/Layout";
 import "./App.css";
 import { NotFound } from "./components/pages/NotFound/NotFound";
+import { ParallelQueries } from "./components/pages/ParallelQueries/ParallelQueries";
 
 function App() {
   return (
@@ -16,6 +17,11 @@ function App() {
         <Route path={AppRoutes.SuperHeroes} element={<SuperHeroes />} />
 
         <Route path={AppRoutes.SuperHero} element={<SuperHero />} />
+
+        <Route
+          path={AppRoutes.Parallel}
+          element={<ParallelQueries heroIds={["1", "3"]} />}
+        />
       </Route>
 
       <Route path="*" element={<NotFound />} />

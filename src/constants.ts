@@ -2,6 +2,7 @@ export enum AppRoutes {
   Main = "/",
   SuperHeroes = "super-heroes",
   SuperHero = "super-heroes/:heroId",
+  Parallel = "parallel",
 }
 
 export enum QueryRoutes {
