@@ -10,6 +10,7 @@ import {
   errorNotification,
   successNotification,
 } from "../../../utils/notifications";
+import { ErrorComponent } from "../../error/ErrorComponent";
 
 export const SuperHeroes: FC = () => {
   const { isLoading, isFetching, isError, data, error, refetch } =
@@ -28,11 +29,7 @@ export const SuperHeroes: FC = () => {
   };
 
   if (isError) {
-    return (
-      <Typography.Title level={2}>
-        Error: {(error as AxiosError).message}
-      </Typography.Title>
-    );
+    return <ErrorComponent error={error} />;
   }
 
   return (

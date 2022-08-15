@@ -1,9 +1,9 @@
 import { UseQueryResult } from "@tanstack/react-query";
 import { Typography } from "antd";
-import { AxiosError } from "axios";
 import { FC } from "react";
 import { useParallelSuperHeroesData } from "../../../queries/useParallelSuperHeroesData";
 import { SuperHero } from "../../../types";
+import { ErrorComponent } from "../../error/ErrorComponent";
 
 interface Props {
   heroIds: string[];
@@ -25,11 +25,7 @@ export const ParallelQueries: FC<Props> = ({ heroIds }) => {
     }
 
     if (isError) {
-      return (
-        <Typography.Title level={3} key={index}>
-          {(error as AxiosError).message}
-        </Typography.Title>
-      );
+      return <ErrorComponent error={error} />;
     }
 
     return <Typography.Title level={3}>{data.name}</Typography.Title>;
@@ -37,7 +33,7 @@ export const ParallelQueries: FC<Props> = ({ heroIds }) => {
 
   return (
     <div>
-      <Typography.Title>SuperHero Page</Typography.Title>
+      <Typography.Title>ParallelQueries Page</Typography.Title>
 
       <div>{results.map(renderHero)}</div>
     </div>

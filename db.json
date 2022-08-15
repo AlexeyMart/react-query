@@ -15,5 +15,9 @@
       "name": "Wonder Woman",
       "alterEgo": "Princess Diana"
     }
+  ],
+  "users": [{ "id": "userId", "channelId": "React" }],
+  "channels": [
+    { "id": "React", "courses": ["React-Query", "React-Router", "Antd"] }
   ]
 }

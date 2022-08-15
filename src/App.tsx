@@ -4,9 +4,10 @@ import { SuperHeroes } from "./components/pages/SuperHeroes/SuperHeroes";
 import { SuperHero } from "./components/pages/SuperHero/SuperHero";
 import { AppRoutes } from "./constants";
 import { Layout } from "./components/layout/Layout";
-import "./App.css";
 import { NotFound } from "./components/pages/NotFound/NotFound";
 import { ParallelQueries } from "./components/pages/ParallelQueries/ParallelQueries";
+import { DependentQueries } from "./components/pages/DependentQueries/DependentQueries";
+import "./App.css";
 
 function App() {
   return (
@@ -21,6 +22,11 @@ function App() {
         <Route
           path={AppRoutes.Parallel}
           element={<ParallelQueries heroIds={["1", "3"]} />}
+        />
+
+        <Route
+          path={AppRoutes.Dependent}
+          element={<DependentQueries userId="userId" />}
         />
       </Route>
 
