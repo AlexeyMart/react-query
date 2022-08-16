@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import App from "./App";
 import "antd/dist/antd.min.css";
 import "react-toastify/dist/ReactToastify.css";
+import { staleTime } from "./constants";
 import "./index.css";
 
 // options также можно применять в каждом отдельном useQuery
@@ -13,7 +14,7 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       retry: 0, // default = 3
-      staleTime: 5 * 60 * 1000, // 5 mins, default = 0
+      staleTime, // 5 mins, default = 0
       // defaults params
       cacheTime: 300000, // 5 minutes
       refetchOnMount: true, // refetch on mount if data is stale. values: true | false | 'always'

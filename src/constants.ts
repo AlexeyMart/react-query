@@ -18,3 +18,6 @@ export enum QueryKeys {
   Users = "users",
   Channels = "channels",
 }
+
+// 5 minutes
+export const staleTime = 5 * 60 * 1000;

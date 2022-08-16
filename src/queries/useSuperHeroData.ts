@@ -1,6 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import axios, { AxiosResponse } from "axios";
-import { QueryKeys, QueryRoutes } from "../constants";
+import { QueryKeys, QueryRoutes, staleTime } from "../constants";
 import { SuperHero } from "../types";
 
 export const fetchSuperHero = async (heroId: string) => {
@@ -18,5 +18,25 @@ export const fetchSuperHero = async (heroId: string) => {
 };
 
 export const useSuperHeroData = (heroId: string) => {
-  return useQuery([QueryKeys.SuperHero, heroId], () => fetchSuperHero(heroId));
+  const queryClient = useQueryClient();
+
+  return useQuery([QueryKeys.SuperHero, heroId], () => fetchSuperHero(heroId), {
+    //  example how to set initial data from another query data
+    initialData: () => {
+      const heroes = queryClient.getQueryData<SuperHero[]>([
+        QueryKeys.SuperHeroes,
+      ]);
+
+      const hero = heroes?.find(({ id }) => id === heroId);
+
+      return hero;
+    },
+    // example how to set initial data and refetch on mount
+    // initialData: (): SuperHero => ({
+    //   id: "some id",
+    //   alterEgo: "some alterEgo",
+    //   name: "some name",
+    // }),
+    // initialDataUpdatedAt: new Date().getTime() - staleTime,
+  });
 };
