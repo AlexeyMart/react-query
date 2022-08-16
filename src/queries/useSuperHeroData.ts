@@ -21,8 +21,8 @@ export const useSuperHeroData = (heroId: string) => {
   const queryClient = useQueryClient();
 
   return useQuery([QueryKeys.SuperHero, heroId], () => fetchSuperHero(heroId), {
-    //  example how to set initial data from another query data
-    initialData: () => {
+    //  example how to set initial data from another query data, need to return data | undefined
+    initialData: (): SuperHero | undefined => {
       const heroes = queryClient.getQueryData<SuperHero[]>([
         QueryKeys.SuperHeroes,
       ]);
