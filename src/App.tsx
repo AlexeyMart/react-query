@@ -8,6 +8,7 @@ import { NotFound } from "./components/pages/NotFound/NotFound";
 import { ParallelQueries } from "./components/pages/ParallelQueries/ParallelQueries";
 import { DependentQueries } from "./components/pages/DependentQueries/DependentQueries";
 import "./App.css";
+import { PaginatedQueries } from "./components/pages/PaginatedQueries/PaginatedQueries";
 
 function App() {
   return (
@@ -28,6 +29,8 @@ function App() {
           path={AppRoutes.Dependent}
           element={<DependentQueries userId="userId" />}
         />
+
+        <Route path={AppRoutes.Paginated} element={<PaginatedQueries />} />
       </Route>
 
       <Route path="*" element={<NotFound />} />

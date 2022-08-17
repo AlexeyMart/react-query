@@ -4,12 +4,14 @@ export enum AppRoutes {
   SuperHero = "super-heroes/:heroId",
   Parallel = "parallel",
   Dependent = "dependent",
+  Paginated = "paginated",
 }
 
 export enum QueryRoutes {
   SuperHeroes = "http://localhost:4000/superheroes",
   Users = "http://localhost:4000/users",
   Channels = "http://localhost:4000/channels",
+  Colors = "http://localhost:4000/colors",
 }
 
 export enum QueryKeys {
@@ -17,6 +19,7 @@ export enum QueryKeys {
   SuperHero = "super-hero",
   Users = "users",
   Channels = "channels",
+  Colors = "colors",
 }
 
 // 5 minutes

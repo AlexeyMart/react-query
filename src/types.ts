@@ -13,3 +13,8 @@ export interface Channel {
   id: string;
   courses: string[];
 }
+
+export interface Color {
+  id: string;
+  label: string;
+}
