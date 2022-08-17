@@ -1,8 +1,11 @@
 .header {
+  max-width: 75%;
   display: flex;
   justify-content: center;
   column-gap: 30px;
-  margin-bottom: 50px;
+  row-gap: 20px;
+  flex-wrap: wrap;
+  margin: 0 auto 50px;
 }
 
 .header_link {

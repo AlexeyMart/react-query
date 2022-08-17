@@ -7,8 +7,9 @@ import { Layout } from "./components/layout/Layout";
 import { NotFound } from "./components/pages/NotFound/NotFound";
 import { ParallelQueries } from "./components/pages/ParallelQueries/ParallelQueries";
 import { DependentQueries } from "./components/pages/DependentQueries/DependentQueries";
-import "./App.css";
 import { PaginatedQueries } from "./components/pages/PaginatedQueries/PaginatedQueries";
+import { InfiniteQueries } from "./components/pages/InfiniteQueries/InfiniteQueries";
+import "./App.css";
 
 function App() {
   return (
@@ -31,6 +32,8 @@ function App() {
         />
 
         <Route path={AppRoutes.Paginated} element={<PaginatedQueries />} />
+
+        <Route path={AppRoutes.Infinite} element={<InfiniteQueries />} />
       </Route>
 
       <Route path="*" element={<NotFound />} />

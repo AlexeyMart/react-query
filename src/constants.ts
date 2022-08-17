@@ -5,6 +5,7 @@ export enum AppRoutes {
   Parallel = "parallel",
   Dependent = "dependent",
   Paginated = "paginated",
+  Infinite = "infinite",
 }
 
 export enum QueryRoutes {

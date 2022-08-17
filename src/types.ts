@@ -1,3 +1,8 @@
+export interface ILink {
+  path: string;
+  label: string;
+}
+
 export interface SuperHero {
   id: string;
   name: string;
