@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
 import { SuperHero } from "../../../types";
 import { Loader } from "../../loader/Loader";
 import { Button, Typography, Input } from "antd";
@@ -9,8 +10,11 @@ import { useAddHero } from "../../../queries/useAddHero";
 import { ErrorComponent } from "../../error/ErrorComponent";
 import { useInputValue } from "../../../hooks/useInputValue";
 import "./SuperHeroes.css";
+import { QueryKeys } from "../../../constants";
 
 export const SuperHeroes: FC = () => {
+  const queryClient = useQueryClient();
+
   const { isLoading, isFetching, isError, data, error, refetch } =
     useSuperHeroesData();
 
@@ -50,7 +54,10 @@ export const SuperHeroes: FC = () => {
   }
 
   return (
-    <div className="super-heroes">
+    <div
+      className="super-heroes"
+      onClick={() => queryClient.cancelQueries([QueryKeys.SuperHeroes])}
+    >
       <Typography.Title>SuperHeroes Page</Typography.Title>
 
       <div className="super-heroes_add-hero">

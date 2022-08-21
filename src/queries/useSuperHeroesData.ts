@@ -4,10 +4,11 @@ import { QueryKeys, QueryRoutes } from "../constants";
 import { SuperHero } from "../types";
 import { errorNotification, successNotification } from "../utils/notifications";
 
-const fetchSuperHeroes = async () => {
+const fetchSuperHeroes = async ({ signal }: { signal?: AbortSignal }) => {
   try {
     const response: AxiosResponse<SuperHero[]> = await axios.get(
-      QueryRoutes.SuperHeroes
+      QueryRoutes.SuperHeroes,
+      { signal }
     );
 
     return response.data;
