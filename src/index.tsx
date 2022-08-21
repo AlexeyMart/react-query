@@ -34,7 +34,7 @@ root.render(
       <App />
     </BrowserRouter>
 
-    <ToastContainer autoClose={2500} />
+    <ToastContainer autoClose={1500} />
 
     <ReactQueryDevtools position="bottom-right" initialIsOpen={false} />
   </QueryClientProvider>

@@ -3,3 +3,12 @@
   flex-direction: column;
   row-gap: 10px;
 }
+
+.super-heroes_hero-link {
+  width: fit-content;
+}
+
+.super-heroes_add {
+  display: flex;
+  margin-bottom: 30px;
+}

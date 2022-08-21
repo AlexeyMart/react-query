@@ -7,9 +7,11 @@ interface Props {
 }
 
 export const ErrorComponent: FC<Props> = ({ error }) => {
+  const isAxiosError = error instanceof AxiosError;
+
   return (
     <Typography.Title level={3}>
-      {(error as AxiosError).message}
+      {isAxiosError ? error.message : "something went wrong"}
     </Typography.Title>
   );
 };

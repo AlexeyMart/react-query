@@ -14,11 +14,28 @@
       "id": "3",
       "name": "Wonder Woman",
       "alterEgo": "Princess Diana"
+    },
+    {
+      "name": "Flash",
+      "alterEgo": "Barry Allen",
+      "id": "1iBmLSa"
     }
   ],
-  "users": [{ "id": "userId", "channelId": "React" }],
+  "users": [
+    {
+      "id": "userId",
+      "channelId": "React"
+    }
+  ],
   "channels": [
-    { "id": "React", "courses": ["React-Query", "React-Router", "Antd"] }
+    {
+      "id": "React",
+      "courses": [
+        "React-Query",
+        "React-Router",
+        "Antd"
+      ]
+    }
   ],
   "colors": [
     {
