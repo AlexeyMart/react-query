@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useSuperHeroData } from "../../../queries/useSuperHeroData";
 import { Card, Typography } from "antd";
 import { Loader } from "../../loader/Loader";
-import { AxiosError } from "axios";
+import { ErrorComponent } from "../../error/ErrorComponent";
 
 export const SuperHero: FC = () => {
   const { heroId } = useParams<{ heroId: string }>();
@@ -13,11 +13,7 @@ export const SuperHero: FC = () => {
   );
 
   if (isError) {
-    return (
-      <Typography.Title level={2}>
-        Error: {(error as AxiosError).message}
-      </Typography.Title>
-    );
+    return <ErrorComponent error={error} />;
   }
 
   return (

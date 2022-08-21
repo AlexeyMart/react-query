@@ -1,6 +1,6 @@
-import { useMutation } from "@tanstack/react-query";
-import axios, { AxiosError, AxiosResponse } from "axios";
-import { QueryRoutes } from "../constants";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import axios, { AxiosResponse } from "axios";
+import { QueryRoutes, QueryKeys } from "../constants";
 import { SuperHero } from "../types";
 import { successNotification, errorNotification } from "../utils/notifications";
 
@@ -20,20 +20,16 @@ const addHero = async (hero: Omit<SuperHero, "id">) => {
 };
 
 export const useAddHero = () => {
+  const queryClient = useQueryClient();
+
   return useMutation(addHero, {
-    onSuccess,
-    onError,
+    onError: () => {
+      errorNotification("Произошла ошибка");
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries([QueryKeys.SuperHeroes]);
+
+      successNotification("Успешно");
+    },
   });
 };
-
-function onSuccess(data: SuperHero) {
-  console.log("add hero :>> ", data);
-
-  successNotification("Успешно");
-}
-
-function onError(error: AxiosError) {
-  console.log("error :>> ", error);
-
-  errorNotification("Произошла ошибка");
-}

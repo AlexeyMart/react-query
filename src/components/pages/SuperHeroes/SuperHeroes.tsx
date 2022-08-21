@@ -1,22 +1,17 @@
 import { FC } from "react";
-import { AxiosError } from "axios";
 import { Link } from "react-router-dom";
 import { SuperHero } from "../../../types";
 import { Loader } from "../../loader/Loader";
 import { Button, Typography, Input } from "antd";
 import { useSuperHeroesData } from "../../../queries/useSuperHeroesData";
 import { useAddHero } from "../../../queries/useAddHero";
-import "./SuperHeroes.css";
-import {
-  errorNotification,
-  successNotification,
-} from "../../../utils/notifications";
 import { ErrorComponent } from "../../error/ErrorComponent";
 import { useInputValue } from "../../../hooks/useInputValue";
+import "./SuperHeroes.css";
 
 export const SuperHeroes: FC = () => {
   const { isLoading, isFetching, isError, data, error, refetch } =
-    useSuperHeroesData({ onSuccess, onError });
+    useSuperHeroesData();
 
   const {
     mutate: addHero,
@@ -45,8 +40,12 @@ export const SuperHeroes: FC = () => {
     );
   };
 
-  if (isError || isAddingError) {
-    return <ErrorComponent error={error || addingError} />;
+  if (isError) {
+    return <ErrorComponent error={error} />;
+  }
+
+  if (isAddingError) {
+    return <ErrorComponent error={addingError} />;
   }
 
   return (
@@ -76,15 +75,3 @@ export const SuperHeroes: FC = () => {
     </div>
   );
 };
-
-function onSuccess(data: SuperHero[]) {
-  console.log("heroes :>> ", data);
-
-  successNotification("Данные получены");
-}
-
-function onError(error: AxiosError) {
-  console.log("error :>> ", error);
-
-  errorNotification("Произошла ошибка");
-}

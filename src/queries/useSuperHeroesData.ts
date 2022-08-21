@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { QueryKeys, QueryRoutes } from "../constants";
 import { SuperHero } from "../types";
+import { errorNotification, successNotification } from "../utils/notifications";
 
 const fetchSuperHeroes = async () => {
   try {
@@ -17,12 +18,7 @@ const fetchSuperHeroes = async () => {
   }
 };
 
-interface Params {
-  onSuccess?: (data: SuperHero[]) => void;
-  onError?: (error: AxiosError) => void;
-}
-
-export const useSuperHeroesData = ({ onSuccess, onError }: Params) => {
+export const useSuperHeroesData = () => {
   return useQuery([QueryKeys.SuperHeroes], fetchSuperHeroes, {
     // enabled: false,
     // select: (data: SuperHero[]) => data,
@@ -30,3 +26,15 @@ export const useSuperHeroesData = ({ onSuccess, onError }: Params) => {
     onError,
   });
 };
+
+function onSuccess(data: SuperHero[]) {
+  console.log("heroes :>> ", data);
+
+  successNotification("Данные получены");
+}
+
+function onError(error: AxiosError) {
+  console.log("error :>> ", error);
+
+  errorNotification("Произошла ошибка");
+}
