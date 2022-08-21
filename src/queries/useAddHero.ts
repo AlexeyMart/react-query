@@ -26,8 +26,20 @@ export const useAddHero = () => {
     onError: () => {
       errorNotification("Произошла ошибка");
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries([QueryKeys.SuperHeroes]);
+    // в onSuccess автоматически попадают данные, типизация зависит от типизации fetcherFn
+    onSuccess: (hero) => {
+      // можно вызвать invalidateQueries (refetch query по указанному ключу), но это additional network request
+      // queryClient.invalidateQueries([QueryKeys.SuperHeroes]);
+
+      const updater = (oldQueryData: SuperHero[] | undefined) => {
+        if (!oldQueryData) {
+          return undefined;
+        }
+
+        return [...oldQueryData, hero];
+      };
+
+      queryClient.setQueryData([QueryKeys.SuperHeroes], updater);
 
       successNotification("Успешно");
     },

@@ -28,7 +28,7 @@ export const useSuperHeroesData = () => {
 };
 
 function onSuccess(data: SuperHero[]) {
-  console.log("heroes :>> ", data);
+  console.log("fetched heroes :>> ", data);
 
   successNotification("Данные получены");
 }

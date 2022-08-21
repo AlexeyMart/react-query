@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { SuperHero } from "../../../types";
 import { Loader } from "../../loader/Loader";
 import { Button, Typography, Input } from "antd";
+import { UserOutlined } from "@ant-design/icons";
 import { useSuperHeroesData } from "../../../queries/useSuperHeroesData";
 import { useAddHero } from "../../../queries/useAddHero";
 import { ErrorComponent } from "../../error/ErrorComponent";
@@ -52,10 +53,20 @@ export const SuperHeroes: FC = () => {
     <div className="super-heroes">
       <Typography.Title>SuperHeroes Page</Typography.Title>
 
-      <div className="super-heroes_add">
-        <Input placeholder="name" value={name} onChange={setName} />
+      <div className="super-heroes_add-hero">
+        <Input
+          placeholder="name"
+          value={name}
+          onChange={setName}
+          prefix={<UserOutlined />}
+        />
 
-        <Input placeholder="alterEgo" value={alterEgo} onChange={setAlterEgo} />
+        <Input
+          placeholder="alterEgo"
+          value={alterEgo}
+          onChange={setAlterEgo}
+          prefix={<UserOutlined />}
+        />
 
         <Button
           onClick={handleAddHero}
