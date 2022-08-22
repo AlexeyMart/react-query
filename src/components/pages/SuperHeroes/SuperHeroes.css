@@ -11,4 +11,5 @@
 .super-heroes_add-hero {
   display: flex;
   margin-bottom: 30px;
+  column-gap: 10px;
 }

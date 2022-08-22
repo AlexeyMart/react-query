@@ -7,17 +7,20 @@ import { Button, Typography, Input } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { useSuperHeroesData } from "../../../queries/useSuperHeroesData";
 import { useAddHero } from "../../../queries/useAddHero";
+import { useOptimisticAddHero } from "../../../queries/useOptimisticAddHero";
 import { ErrorComponent } from "../../error/ErrorComponent";
 import { useInputValue } from "../../../hooks/useInputValue";
-import "./SuperHeroes.css";
 import { QueryKeys } from "../../../constants";
+import "./SuperHeroes.css";
 
 export const SuperHeroes: FC = () => {
   const queryClient = useQueryClient();
 
+  // fetch
   const { isLoading, isFetching, isError, data, error, refetch } =
     useSuperHeroesData();
 
+  // mutation
   const {
     mutate: addHero,
     isLoading: isAdding,
@@ -25,12 +28,20 @@ export const SuperHeroes: FC = () => {
     error: addingError,
   } = useAddHero();
 
+  // optimistic update
+  const { mutate: optimisticAddHero, isLoading: isOptimisticAdding } =
+    useOptimisticAddHero();
+
   const [name, setName] = useInputValue();
 
   const [alterEgo, setAlterEgo] = useInputValue();
 
   const handleAddHero = () => {
     addHero({ name, alterEgo });
+  };
+
+  const handleOptimisticAddHero = () => {
+    optimisticAddHero({ name, alterEgo });
   };
 
   const handleRefetch = () => {
@@ -81,13 +92,22 @@ export const SuperHeroes: FC = () => {
         >
           Add hero
         </Button>
+
+        <Button
+          onClick={handleOptimisticAddHero}
+          disabled={!name || !alterEgo || isOptimisticAdding}
+        >
+          Optimistic Update
+        </Button>
       </div>
 
       <Button onClick={handleRefetch} style={{ marginBottom: "30px" }}>
         Fetch / Refetch
       </Button>
 
-      {(isLoading || isFetching || isAdding) && <Loader />}
+      {(isLoading || isFetching || isAdding || isOptimisticAdding) && (
+        <Loader />
+      )}
 
       {data && <div className="super-heroes_list">{data.map(renderHero)}</div>}
     </div>

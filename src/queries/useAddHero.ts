@@ -26,7 +26,7 @@ export const useAddHero = () => {
     onError: () => {
       errorNotification("Произошла ошибка");
     },
-    // в onSuccess автоматически попадают данные, типизация зависит от типизации fetcherFn
+    // в onSuccess автоматически попадают данные, типизация зависит от типизации mutationFn
     onSuccess: (hero) => {
       // можно вызвать invalidateQueries (refetch query по указанному ключу), но это additional network request
       // queryClient.invalidateQueries([QueryKeys.SuperHeroes]);
