@@ -35,11 +35,7 @@
   "channels": [
     {
       "id": "React",
-      "courses": [
-        "React-Query",
-        "React-Router",
-        "Antd"
-      ]
+      "courses": ["React-Query", "React-Router", "Antd"]
     }
   ],
   "colors": [
